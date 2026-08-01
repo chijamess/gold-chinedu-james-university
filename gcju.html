@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gold Chinedu-James University</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0a0e3f;
+    --navy-deep:#060933;
+    --navy-soft:#1c2266;
+    --gold:#e8b339;
+    --gold-bright:#f6cf5e;
+    --paper:#f7f5f0;
+    --ink:#1c1d24;
+    --ink-soft:#52545f;
+    --line:#e3dfd4;
+    --error:#c4453a;
+    --success:#2f7a4f;
+    --card-bg:#ffffff;
+    --radius:10px;
+    --maxw:1180px;
+    --serif:'Fraunces', Georgia, serif;
+    --sans:'Inter', system-ui, sans-serif;
+  }
+
+  html[data-theme="dark"]{
+    --paper:#10121f;
+    --ink:#eceaf2;
+    --ink-soft:#a7a8b8;
+    --line:#262945;
+    --card-bg:#171a2c;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    font-family:var(--sans);
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    transition:background 0.25s ease, color 0.25s ease;
+  }
+
+  a{ color:inherit; }
+  img,svg{ display:block; max-width:100%; }
+
+  :focus-visible{ outline:3px solid var(--gold); outline-offset:2px; }
+
+  .skip-link{
+    position:absolute; left:-9999px; top:0;
+    background:var(--gold); color:var(--navy);
+    padding:10px 16px; font-weight:600; z-index:300;
+  }
+  .skip-link:focus{ left:10px; top:10px; }
+
+  /* ---------- header / nav ---------- */
+  .site-header{
+    position:sticky; top:0; z-index:100;
+    background:var(--navy);
+    border-bottom:1px solid rgba(232,179,57,0.25);
+  }
+
+  .header-inner{
+    max-width:var(--maxw); margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:12px 24px; gap:14px;
+  }
+
+  .brand{
+    display:flex; align-items:center; gap:12px;
+    text-decoration:none; cursor:pointer; border:none; background:none;
+  }
+
+  .brand-mark{
+    width:42px; height:42px; border-radius:50%;
+    background:linear-gradient(155deg,var(--gold-bright),var(--gold) 60%,#b9872a);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--serif); font-weight:700; color:var(--navy-deep);
+    font-size:1.1rem; flex-shrink:0;
+  }
+
+  .brand-text{
+    font-family:var(--serif); color:#fff; font-size:1.04rem;
+    font-weight:600; letter-spacing:0.2px; line-height:1.15;
+  }
+  .brand-text span{
+    display:block; font-family:var(--sans); font-size:0.6rem;
+    letter-spacing:1.6px; text-transform:uppercase; color:var(--gold);
+    font-weight:600; margin-top:2px;
+  }
+
+  .header-right{ display:flex; align-items:center; gap:10px; }
+
+  .icon-btn{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.14);
+    color:#fff; width:38px; height:38px; border-radius:7px;
+    cursor:pointer; font-size:1rem; display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .icon-btn:hover{ background:rgba(255,255,255,0.14); }
+
+  nav.primary-nav{ display:flex; align-items:center; gap:4px; }
+
+  nav.primary-nav button{
+    background:none; border:none; color:rgba(255,255,255,0.82);
+    font-family:var(--sans); font-size:0.88rem; font-weight:500;
+    padding:8px 11px; border-radius:6px; cursor:pointer;
+    transition:background 0.15s ease, color 0.15s ease;
+    white-space:nowrap;
+  }
+  nav.primary-nav button:hover{ background:rgba(255,255,255,0.08); color:#fff; }
+  nav.primary-nav button[aria-current="page"]{
+    color:var(--navy-deep); background:var(--gold); font-weight:600;
+  }
+  nav.primary-nav button[aria-current="page"]:hover{ background:var(--gold-bright); }
+
+  .nav-toggle{
+    display:none; background:none; border:1px solid rgba(255,255,255,0.3);
+    border-radius:6px; color:#fff; width:40px; height:40px; cursor:pointer; font-size:1.2rem;
+    flex-shrink:0;
+  }
+
+  @media (max-width:980px){
+    nav.primary-nav{
+      position:absolute; top:100%; left:0; right:0;
+      background:var(--navy); flex-direction:column; align-items:stretch;
+      padding:8px 16px 16px; border-bottom:1px solid rgba(232,179,57,0.25);
+      display:none;
+    }
+    nav.primary-nav.open{ display:flex; }
+    nav.primary-nav button{ text-align:left; width:100%; padding:11px 14px; }
+    .nav-toggle{ display:flex; align-items:center; justify-content:center; }
+  }
+
+  /* ---------- search overlay ---------- */
+  .search-overlay{
+    position:fixed; inset:0; background:rgba(6,9,51,0.7);
+    z-index:250; display:none; align-items:flex-start; justify-content:center;
+    padding-top:80px; backdrop-filter:blur(3px);
+  }
+  .search-overlay.open{ display:flex; }
+  .search-box{
+    background:var(--card-bg); border-radius:12px; width:92%; max-width:560px;
+    padding:8px; box-shadow:0 20px 60px rgba(0,0,0,0.3);
+  }
+  .search-box input{
+    width:100%; border:none; outline:none; background:none;
+    font-size:1.1rem; padding:14px 16px; color:var(--ink); font-family:var(--sans);
+  }
+  .search-results{ max-height:340px; overflow-y:auto; }
+  .search-result{
+    display:block; width:100%; text-align:left; background:none; border:none;
+    padding:12px 16px; border-top:1px solid var(--line); cursor:pointer; color:var(--ink);
+    font-family:var(--sans);
+  }
+  .search-result:hover{ background:var(--paper); }
+  .search-result b{ display:block; font-size:0.92rem; }
+  .search-result small{ color:var(--ink-soft); font-size:0.8rem; }
+  .search-empty{ padding:20px 16px; color:var(--ink-soft); font-size:0.9rem; }
+
+  /* ---------- sections ---------- */
+  main{ min-height:60vh; }
+  section{ display:none; }
+  section.active{ display:block; animation:fadein 0.35s ease; }
+
+  @keyframes fadein{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 24px; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:
+      radial-gradient(ellipse 900px 500px at 80% -10%, rgba(232,179,57,0.18), transparent 60%),
+      linear-gradient(165deg, var(--navy-deep), var(--navy) 55%, var(--navy-soft));
+    color:#fff; padding:80px 24px 90px; position:relative; overflow:hidden;
+  }
+  .hero::after{
+    content:""; position:absolute; right:-120px; bottom:-160px;
+    width:420px; height:420px; border:1px solid rgba(232,179,57,0.18); border-radius:50%;
+  }
+  .hero-inner{ max-width:var(--maxw); margin:0 auto; position:relative; z-index:1; }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; font-size:0.78rem;
+    letter-spacing:1.6px; text-transform:uppercase; color:var(--gold);
+    font-weight:600; margin-bottom:22px;
+  }
+  .eyebrow::before{ content:""; width:26px; height:1px; background:var(--gold); }
+
+  .hero h1{
+    font-family:var(--serif); font-weight:600; font-size:clamp(2.1rem, 5vw, 3.5rem);
+    line-height:1.08; max-width:760px; margin-bottom:22px; letter-spacing:-0.5px;
+  }
+  .hero h1 em{ font-style:italic; color:var(--gold-bright); }
+  .hero p.lede{ font-size:1.1rem; color:rgba(255,255,255,0.78); max-width:520px; margin-bottom:34px; }
+  .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:50px; }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; font-family:var(--sans);
+    font-weight:600; font-size:0.95rem; padding:13px 26px; border-radius:7px;
+    cursor:pointer; border:1px solid transparent;
+    transition:transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:active{ transform:translateY(1px); }
+  .btn-gold{ background:var(--gold); color:var(--navy-deep); }
+  .btn-gold:hover{ background:var(--gold-bright); box-shadow:0 6px 20px rgba(232,179,57,0.25); }
+  .btn-ghost{ background:transparent; color:#fff; border-color:rgba(255,255,255,0.35); }
+  .btn-ghost:hover{ background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.6); }
+  .btn-block{ width:100%; justify-content:center; }
+  .btn-sm{ padding:8px 16px; font-size:0.85rem; }
+  .btn-outline-navy{ background:transparent; color:var(--navy-deep); border-color:var(--navy-deep); }
+  .btn-outline-navy:hover{ background:var(--navy-deep); color:#fff; }
+  .btn-danger{ background:var(--error); color:#fff; }
+  .btn-danger:hover{ background:#a8392f; }
+
+  .stat-row{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:28px; max-width:780px;
+    padding-top:34px; border-top:1px solid rgba(255,255,255,0.14);
+  }
+  .stat b{ font-family:var(--serif); font-size:1.6rem; color:#fff; display:block; font-weight:600; }
+  .stat span{ font-size:0.76rem; color:rgba(255,255,255,0.6); letter-spacing:0.3px; }
+
+  @media (max-width:700px){ .stat-row{ grid-template-columns:repeat(2,1fr); row-gap:24px; } }
+
+  /* ---------- section heading pattern ---------- */
+  .section-head{ max-width:580px; margin:0 auto 48px; text-align:center; }
+  .section-head .eyebrow{ color:#b9872a; justify-content:center; }
+  .section-head .eyebrow::before{ background:#b9872a; }
+  .section-head h2{
+    font-family:var(--serif); font-size:clamp(1.7rem, 3vw, 2.3rem);
+    font-weight:600; color:var(--navy-deep); letter-spacing:-0.3px;
+  }
+  html[data-theme="dark"] .section-head h2{ color:#fff; }
+  .section-head p{ color:var(--ink-soft); margin-top:12px; font-size:1rem; }
+
+  /* ---------- features ---------- */
+  .features-section{ padding:84px 24px; background:var(--paper); }
+  .feature-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); max-width:var(--maxw); margin:0 auto;
+  }
+  @media (max-width:900px){ .feature-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:620px){ .feature-grid{ grid-template-columns:1fr; } }
+
+  .feature{ background:var(--card-bg); padding:32px 26px; }
+  .feature .num{
+    font-family:var(--serif); color:#cbb87a; font-size:0.85rem;
+    font-weight:600; letter-spacing:1px; margin-bottom:16px; display:block;
+  }
+  .feature h3{ font-family:var(--serif); color:var(--navy-deep); font-size:1.14rem; font-weight:600; margin-bottom:10px; }
+  html[data-theme="dark"] .feature h3{ color:var(--gold-bright); }
+  .feature p{ color:var(--ink-soft); font-size:0.92rem; }
+
+  /* ---------- testimonials ---------- */
+  .testimonial-section{ padding:84px 24px; background:var(--card-bg); }
+  .testimonial-grid{
+    max-width:var(--maxw); margin:0 auto; display:grid;
+    grid-template-columns:repeat(3,1fr); gap:24px;
+  }
+  @media (max-width:900px){ .testimonial-grid{ grid-template-columns:1fr; max-width:520px; } }
+  .testimonial-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:28px;
+  }
+  .testimonial-card .quote-mark{ font-family:var(--serif); font-size:2.6rem; color:var(--gold); line-height:0.5; display:block; margin-bottom:6px; }
+  .testimonial-card p{ color:var(--ink-soft); font-size:0.94rem; margin-bottom:18px; }
+  .testimonial-person{ display:flex; align-items:center; gap:12px; }
+  .testimonial-avatar{
+    width:38px; height:38px; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--serif); font-weight:700; font-size:0.85rem; color:var(--navy-deep);
+    background:linear-gradient(155deg,var(--gold-bright),var(--gold));
+  }
+  .testimonial-person b{ display:block; font-size:0.88rem; color:var(--ink); }
+  .testimonial-person span{ font-size:0.78rem; color:var(--ink-soft); }
+
+  /* ---------- FAQ ---------- */
+  .faq-section{ padding:84px 24px; background:var(--paper); }
+  .faq-list{ max-width:680px; margin:0 auto; }
+  .faq-item{ border-bottom:1px solid var(--line); }
+  .faq-question{
+    width:100%; display:flex; align-items:center; justify-content:space-between;
+    background:none; border:none; padding:20px 4px; text-align:left; cursor:pointer;
+    font-family:var(--sans); font-size:0.98rem; font-weight:600; color:var(--ink);
+  }
+  .faq-question .chevron{ transition:transform 0.2s ease; color:var(--gold); flex-shrink:0; margin-left:12px; }
+  .faq-item.open .chevron{ transform:rotate(180deg); }
+  .faq-answer{ max-height:0; overflow:hidden; transition:max-height 0.25s ease; }
+  .faq-item.open .faq-answer{ max-height:300px; }
+  .faq-answer p{ padding:0 4px 20px; color:var(--ink-soft); font-size:0.92rem; }
+
+  /* ---------- auth sections ---------- */
+  .auth-section{
+    padding:74px 24px 90px;
+    background:linear-gradient(180deg, var(--navy-deep), var(--navy) 70%);
+    color:#fff;
+  }
+  .auth-card{
+    max-width:440px; margin:0 auto; background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.12); border-radius:14px;
+    padding:38px 34px 34px; backdrop-filter:blur(6px);
+  }
+  .auth-card h2{ font-family:var(--serif); font-size:1.55rem; font-weight:600; margin-bottom:6px; }
+  .auth-card .auth-sub{ color:rgba(255,255,255,0.6); font-size:0.91rem; margin-bottom:28px; }
+
+  .field{ margin-bottom:17px; text-align:left; }
+  .field label{
+    display:block; font-size:0.8rem; font-weight:600; color:rgba(255,255,255,0.75);
+    margin-bottom:6px; letter-spacing:0.2px;
+  }
+  .field input, .field select{
+    width:100%; padding:12px 14px; border-radius:7px;
+    border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.06);
+    color:#fff; font-size:0.94rem; font-family:var(--sans);
+    transition:border-color 0.15s ease, background 0.15s ease;
+  }
+  .field select option{ color:#1c1d24; }
+  .field input::placeholder{ color:rgba(255,255,255,0.35); }
+  .field input:focus, .field select:focus{
+    border-color:var(--gold); background:rgba(255,255,255,0.09); outline:none;
+  }
+  .field input[aria-invalid="true"]{ border-color:var(--error); }
+  .field-error{ font-size:0.78rem; color:#ff9d8f; margin-top:6px; min-height:1em; }
+  .field-hint{ font-size:0.76rem; color:rgba(255,255,255,0.42); margin-top:6px; }
+
+  .field-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:17px; }
+  .checkbox-row{ display:flex; align-items:center; gap:8px; font-size:0.85rem; color:rgba(255,255,255,0.7); }
+  .checkbox-row input{ width:auto; }
+
+  .link-btn{ background:none; border:none; color:var(--gold); font-size:0.85rem; font-weight:600; cursor:pointer; padding:0; }
+  .link-btn:hover{ color:var(--gold-bright); text-decoration:underline; }
+
+  .form-message{
+    margin-top:18px; padding:11px 14px; border-radius:7px;
+    font-size:0.88rem; font-weight:500; display:none;
+  }
+  .form-message.show{ display:block; }
+  .form-message.error{ background:rgba(196,69,58,0.18); color:#ffb4ac; border:1px solid rgba(196,69,58,0.4); }
+  .form-message.success{ background:rgba(47,122,79,0.18); color:#a9e2bd; border:1px solid rgba(47,122,79,0.4); }
+
+  .auth-switch{ text-align:center; margin-top:22px; font-size:0.88rem; color:rgba(255,255,255,0.6); }
+  .auth-tabs{ display:flex; gap:6px; margin-bottom:26px; background:rgba(255,255,255,0.06); padding:4px; border-radius:8px; }
+  .auth-tabs button{
+    flex:1; background:none; border:none; color:rgba(255,255,255,0.7); padding:8px; border-radius:6px;
+    font-size:0.83rem; font-weight:600; cursor:pointer;
+  }
+  .auth-tabs button.active{ background:var(--gold); color:var(--navy-deep); }
+
+  .strength-meter{ display:flex; gap:4px; margin-top:8px; }
+  .strength-meter span{ flex:1; height:4px; border-radius:2px; background:rgba(255,255,255,0.15); transition:background 0.2s ease; }
+
+  /* ---------- generic page sections ---------- */
+  .page-section{ padding:84px 24px; background:var(--card-bg); }
+  .page-body{ max-width:720px; margin:0 auto; color:var(--ink-soft); font-size:1.01rem; }
+  .page-body h2{ font-family:var(--serif); color:var(--navy-deep); font-size:clamp(1.7rem,3vw,2.3rem); margin-bottom:22px; font-weight:600; }
+  html[data-theme="dark"] .page-body h2{ color:#fff; }
+  .page-body p{ margin-bottom:18px; }
+  .page-body h3{ font-family:var(--serif); color:var(--navy-deep); font-size:1.13rem; margin:28px 0 12px; font-weight:600; }
+  html[data-theme="dark"] .page-body h3{ color:var(--gold-bright); }
+
+  /* ---------- programmes ---------- */
+  .programmes-section{ padding:84px 24px; background:var(--paper); }
+  .faculty-block{ max-width:var(--maxw); margin:0 auto 44px; }
+  .faculty-block:last-child{ margin-bottom:0; }
+  .faculty-title{
+    font-family:var(--serif); color:var(--navy-deep); font-size:1.3rem; font-weight:600;
+    margin-bottom:18px; padding-bottom:10px; border-bottom:2px solid var(--gold);
+  }
+  html[data-theme="dark"] .faculty-title{ color:#fff; }
+  .programme-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+  @media (max-width:780px){ .programme-grid{ grid-template-columns:1fr; } }
+  .programme-card{
+    background:var(--card-bg); border:1px solid var(--line); border-radius:10px; padding:20px 22px;
+  }
+  .programme-card h4{ font-size:0.98rem; font-weight:600; color:var(--ink); margin-bottom:6px; }
+  .programme-card p{ font-size:0.86rem; color:var(--ink-soft); }
+  .programme-card .duration{
+    display:inline-block; margin-top:10px; font-size:0.72rem; font-weight:700;
+    color:#b9872a; letter-spacing:0.3px; text-transform:uppercase;
+  }
+
+  /* ---------- admissions ---------- */
+  .steps-list{ max-width:680px; margin:0 auto; }
+  .step-row{ display:flex; gap:20px; padding:22px 0; border-bottom:1px solid var(--line); }
+  .step-row:last-child{ border-bottom:none; }
+  .step-num{
+    flex-shrink:0; width:38px; height:38px; border-radius:50%;
+    background:var(--navy-deep); color:var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--serif); font-weight:700; font-size:0.95rem;
+  }
+  .step-row h4{ font-size:1rem; font-weight:600; color:var(--ink); margin-bottom:5px; }
+  .step-row p{ font-size:0.9rem; color:var(--ink-soft); }
+
+  /* ---------- staff directory ---------- */
+  .staff-section{ padding:84px 24px; background:var(--card-bg); }
+  .staff-toolbar{
+    max-width:var(--maxw); margin:0 auto 28px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;
+  }
+  .staff-toolbar input, .staff-toolbar select{
+    padding:10px 14px; border-radius:7px; border:1px solid var(--line);
+    background:var(--paper); color:var(--ink); font-size:0.9rem; font-family:var(--sans);
+  }
+  .staff-toolbar input{ flex:1; min-width:200px; }
+  .staff-grid{
+    max-width:var(--maxw); margin:0 auto; display:grid;
+    grid-template-columns:repeat(4,1fr); gap:18px;
+  }
+  @media (max-width:980px){ .staff-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .staff-grid{ grid-template-columns:1fr; } }
+  .staff-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:10px;
+    padding:22px 18px; text-align:center;
+  }
+  .staff-photo{
+    width:64px; height:64px; border-radius:50%; margin:0 auto 14px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--serif); font-weight:700; font-size:1.2rem; color:var(--navy-deep);
+    background:linear-gradient(155deg,var(--gold-bright),var(--gold));
+  }
+  .staff-card h4{ font-size:0.94rem; font-weight:600; color:var(--ink); margin-bottom:3px; }
+  .staff-card span{ display:block; font-size:0.78rem; color:#b9872a; font-weight:600; margin-bottom:6px; }
+  .staff-card small{ font-size:0.78rem; color:var(--ink-soft); }
+  .staff-empty{ text-align:center; color:var(--ink-soft); padding:40px 0; grid-column:1/-1; }
+
+  /* ---------- events calendar ---------- */
+  .events-section{ padding:84px 24px; background:var(--paper); }
+  .events-list{ max-width:780px; margin:0 auto; }
+  .event-row{
+    display:flex; gap:20px; align-items:flex-start; padding:20px 0; border-bottom:1px solid var(--line);
+  }
+  .event-row:last-child{ border-bottom:none; }
+  .event-date{
+    flex-shrink:0; width:64px; text-align:center; background:var(--navy-deep); border-radius:9px; padding:10px 4px;
+  }
+  .event-date b{ display:block; color:var(--gold); font-family:var(--serif); font-size:1.3rem; line-height:1; }
+  .event-date span{ display:block; color:rgba(255,255,255,0.65); font-size:0.66rem; text-transform:uppercase; letter-spacing:0.5px; margin-top:2px; }
+  .event-row h4{ font-size:0.98rem; font-weight:600; color:var(--ink); margin-bottom:4px; }
+  .event-row p{ font-size:0.86rem; color:var(--ink-soft); }
+  .event-tag{
+    display:inline-block; margin-top:8px; font-size:0.7rem; font-weight:700;
+    padding:3px 10px; border-radius:20px; background:#e8eefb; color:#3457a8; letter-spacing:0.3px;
+  }
+
+  /* ---------- contact ---------- */
+  .contact-grid{ max-width:var(--maxw); margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:48px; }
+  @media (max-width:780px){ .contact-grid{ grid-template-columns:1fr; } }
+  .contact-list{ list-style:none; margin-top:24px; }
+  .contact-list li{ padding:14px 0; border-bottom:1px solid var(--line); display:flex; gap:14px; font-size:0.95rem; }
+  .contact-list li b{ color:var(--navy-deep); min-width:90px; display:inline-block; }
+  html[data-theme="dark"] .contact-list li b{ color:var(--gold-bright); }
+
+  .card{ background:var(--card-bg); border:1px solid var(--line); border-radius:12px; padding:26px; }
+  .card h3{ font-family:var(--serif); color:var(--navy-deep); font-size:1.08rem; margin-bottom:18px; font-weight:600; }
+  html[data-theme="dark"] .card h3{ color:#fff; }
+
+  /* ---------- dashboard ---------- */
+  .dashboard-section{ padding:54px 24px 100px; background:var(--paper); }
+  .dash-head{
+    max-width:var(--maxw); margin:0 auto 32px; display:flex; align-items:flex-end;
+    justify-content:space-between; flex-wrap:wrap; gap:18px;
+  }
+  .dash-head h2{ font-family:var(--serif); font-size:1.8rem; color:var(--navy-deep); font-weight:600; }
+  html[data-theme="dark"] .dash-head h2{ color:#fff; }
+  .dash-head p{ color:var(--ink-soft); margin-top:4px; }
+  .dash-actions{ display:flex; gap:10px; }
+
+  .dash-tabs{
+    max-width:var(--maxw); margin:0 auto 26px; display:flex; gap:8px; border-bottom:1px solid var(--line);
+  }
+  .dash-tabs button{
+    background:none; border:none; padding:11px 4px; margin-right:18px; font-size:0.9rem;
+    font-weight:600; color:var(--ink-soft); cursor:pointer; border-bottom:2px solid transparent;
+  }
+  .dash-tabs button.active{ color:var(--navy-deep); border-bottom-color:var(--gold); }
+  html[data-theme="dark"] .dash-tabs button.active{ color:var(--gold-bright); }
+
+  .dash-panel{ display:none; }
+  .dash-panel.active{ display:block; }
+
+  .dash-grid{ max-width:var(--maxw); margin:0 auto; display:grid; grid-template-columns:2fr 1fr; gap:22px; }
+  @media (max-width:860px){ .dash-grid{ grid-template-columns:1fr; } }
+
+  .course-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:14px 0; border-bottom:1px solid var(--line); font-size:0.92rem;
+  }
+  .course-row:last-child{ border-bottom:none; }
+  .course-row b{ color:var(--ink); display:block; font-weight:600; }
+  .course-row small{ color:var(--ink-soft); }
+  .tag{ font-size:0.72rem; font-weight:700; padding:4px 10px; border-radius:20px; letter-spacing:0.3px; }
+  .tag.ok{ background:#e3f3e8; color:var(--success); }
+  .tag.pending{ background:#fdf2dd; color:#b9872a; }
+  .tag.grade{ background:#e8eefb; color:#3457a8; }
+
+  .profile-row{ display:flex; gap:14px; align-items:center; margin-bottom:22px; }
+  .avatar{
+    width:54px; height:54px; border-radius:50%;
+    background:linear-gradient(155deg,var(--gold-bright),var(--gold)); color:var(--navy-deep);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--serif); font-weight:700; font-size:1.3rem; flex-shrink:0;
+  }
+  .profile-row b{ display:block; color:var(--ink); font-size:1rem; }
+  .profile-row span{ color:var(--ink-soft); font-size:0.85rem; }
+
+  .info-line{ display:flex; justify-content:space-between; font-size:0.87rem; padding:9px 0; border-bottom:1px solid var(--line); }
+  .info-line:last-child{ border-bottom:none; }
+  .info-line span:first-child{ color:var(--ink-soft); }
+  .info-line span:last-child{ font-weight:600; }
+
+  .available-course{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:13px 0; border-bottom:1px solid var(--line); font-size:0.9rem; gap:12px;
+  }
+  .available-course:last-child{ border-bottom:none; }
+  .available-course b{ display:block; font-size:0.9rem; }
+  .available-course small{ color:var(--ink-soft); }
+
+  .gpa-summary{ display:flex; gap:24px; margin-bottom:24px; flex-wrap:wrap; }
+  .gpa-box{ background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:18px 24px; text-align:center; flex:1; min-width:120px; }
+  .gpa-box b{ display:block; font-family:var(--serif); font-size:1.7rem; color:var(--navy-deep); }
+  html[data-theme="dark"] .gpa-box b{ color:var(--gold-bright); }
+  .gpa-box span{ font-size:0.74rem; color:var(--ink-soft); letter-spacing:0.3px; text-transform:uppercase; }
+
+  .semester-block{ margin-bottom:22px; }
+  .semester-block h4{ font-size:0.9rem; font-weight:600; color:var(--ink); margin-bottom:10px; }
+  .result-row{ display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid var(--line); font-size:0.87rem; }
+  .result-row:last-child{ border-bottom:none; }
+
+  .fee-row{ display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid var(--line); font-size:0.9rem; }
+  .fee-row:last-child{ border-bottom:none; font-weight:700; }
+  .fee-status{ margin-top:18px; padding:14px; border-radius:8px; background:#fdf2dd; color:#b9872a; font-size:0.88rem; font-weight:600; text-align:center; }
+  .fee-status.paid{ background:#e3f3e8; color:var(--success); }
+
+  .admin-table{ width:100%; border-collapse:collapse; font-size:0.88rem; }
+  .admin-table th{
+    text-align:left; padding:10px 12px; border-bottom:2px solid var(--line);
+    font-size:0.76rem; text-transform:uppercase; letter-spacing:0.4px; color:var(--ink-soft);
+  }
+  .admin-table td{ padding:12px; border-bottom:1px solid var(--line); }
+  .admin-table tr:last-child td{ border-bottom:none; }
+
+  .empty-state{ text-align:center; padding:30px 10px; color:var(--ink-soft); font-size:0.9rem; }
+
+  /* ---------- footer ---------- */
+  footer{ background:var(--navy-deep); color:rgba(255,255,255,0.55); text-align:center; padding:28px 24px; font-size:0.85rem; }
+  footer .gold-dot{ color:var(--gold); }
+
+  /* ---------- toast ---------- */
+  .toast{
+    position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--navy-deep); color:#fff; padding:13px 22px; border-radius:8px;
+    font-size:0.9rem; box-shadow:0 10px 30px rgba(0,0,0,0.25);
+    opacity:0; pointer-events:none; transition:opacity 0.25s ease, transform 0.25s ease;
+    z-index:300; border:1px solid rgba(232,179,57,0.3); max-width:90%; text-align:center;
+  }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <button class="brand" onclick="showTab('home')" aria-label="Go to homepage">
+      <span class="brand-mark">GC</span>
+      <span class="brand-text">Gold Chinedu-James<span>University</span></span>
+    </button>
+
+    <div class="header-right">
+      <button class="icon-btn" id="searchToggle" aria-label="Search the site" title="Search">🔍</button>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primaryNav">☰</button>
+    </div>
+
+    <nav class="primary-nav" id="primaryNav" aria-label="Primary">
+      <button data-tab="home" onclick="showTab('home')">Home</button>
+      <button data-tab="programmes" onclick="showTab('programmes')">Programmes</button>
+      <button data-tab="features" onclick="showTab('features')">Why GCJU</button>
+      <button data-tab="admissions" onclick="showTab('admissions')">Admissions</button>
+      <button data-tab="staff" onclick="showTab('staff')">Faculty</button>
+      <button data-tab="events" onclick="showTab('events')">Events</button>
+      <button data-tab="about" onclick="showTab('about')">About</button>
+      <button data-tab="contact" onclick="showTab('contact')">Contact</button>
+      <button data-tab="login" onclick="showTab('login')">Log In</button>
+      <button data-tab="signup" onclick="showTab('signup')">Apply Now</button>
+    </nav>
+  </div>
+</header>
+
+<!-- SEARCH OVERLAY -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search pages, programmes, FAQs..." aria-label="Search">
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<main id="main-content">
+
+  <!-- HOME -->
+  <section class="hero active" id="home" aria-labelledby="home-heading">
+    <div class="hero-inner">
+      <p class="eyebrow">Admissions open for 2026/2027</p>
+      <h1 id="home-heading">A university built for people who finish <em>what they start.</em></h1>
+      <p class="lede">Gold Chinedu-James University trains engineers, analysts and builders with a curriculum that mirrors the industry, not the textbook.</p>
+      <div class="hero-actions">
+        <button class="btn btn-gold" onclick="showTab('signup')">Apply now</button>
+        <button class="btn btn-ghost" onclick="showTab('features')">See what's different</button>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><b>11,400+</b><span>STUDENTS ENROLLED</span></div>
+        <div class="stat"><b>96%</b><span>GRADUATE PLACEMENT</span></div>
+        <div class="stat"><b>38</b><span>DEGREE PROGRAMMES</span></div>
+        <div class="stat"><b>1962</b><span>FOUNDED</span></div>
+      </div>
+    </div>
+
+    <!-- Testimonials render here via JS, only visible while Home is active -->
+    <div class="testimonial-section" id="testimonials-section" aria-labelledby="testi-heading"></div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features-section" id="features" aria-labelledby="features-heading">
+    <div class="section-head">
+      <p class="eyebrow">Why GCJU</p>
+      <h2 id="features-heading">Five reasons students choose us</h2>
+      <p>Every decision on this campus is built around one question: does it make graduates more employable?</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature"><span class="num">01</span><h3>Industry-built curriculum</h3><p>Course content is reviewed every year with partner companies, so what you study still matters by the time you graduate.</p></div>
+      <div class="feature"><span class="num">02</span><h3>Modern facilities</h3><p>Smart classrooms, fibre-connected labs and 24-hour study halls, designed for students who work odd hours.</p></div>
+      <div class="feature"><span class="num">03</span><h3>Global community</h3><p>Students from over 40 countries, with exchange partners across Europe and the Gulf for those who want to study abroad.</p></div>
+      <div class="feature"><span class="num">04</span><h3>Personalised learning paths</h3><p>Flexible scheduling and adaptive coursework, so your degree fits around a job, a family, or both.</p></div>
+      <div class="feature"><span class="num">05</span><h3>Technology-driven teaching</h3><p>Virtual labs and interactive platforms mean you practise on the same tools you'll use after graduation.</p></div>
+      <div class="feature"><span class="num">06</span><h3>Career support that doesn't stop</h3><p>Placement officers stay in touch for three years after graduation, not just until convocation.</p></div>
+    </div>
+  </section>
+
+  <!-- PROGRAMMES -->
+  <section class="programmes-section" id="programmes" aria-labelledby="programmes-heading">
+    <div class="section-head">
+      <p class="eyebrow">Programmes</p>
+      <h2 id="programmes-heading">38 programmes across four faculties</h2>
+      <p>Every programme is reviewed yearly with industry partners to stay current.</p>
+    </div>
+
+    <div class="faculty-block">
+      <h3 class="faculty-title">Faculty of Engineering</h3>
+      <div class="programme-grid">
+        <div class="programme-card"><h4>B.Eng Computer Engineering</h4><p>Hardware, embedded systems and software integration.</p><span class="duration">5 years</span></div>
+        <div class="programme-card"><h4>B.Eng Electrical &amp; Electronics</h4><p>Power systems, electronics and control engineering.</p><span class="duration">5 years</span></div>
+        <div class="programme-card"><h4>B.Eng Mechanical Engineering</h4><p>Thermodynamics, design and manufacturing systems.</p><span class="duration">5 years</span></div>
+        <div class="programme-card"><h4>B.Eng Petroleum Engineering</h4><p>Drilling, reservoir and production engineering for oil and gas.</p><span class="duration">5 years</span></div>
+      </div>
+    </div>
+
+    <div class="faculty-block">
+      <h3 class="faculty-title">Faculty of Computing</h3>
+      <div class="programme-grid">
+        <div class="programme-card"><h4>B.Sc Computer Science</h4><p>Software engineering, algorithms and applied AI.</p><span class="duration">4 years</span></div>
+        <div class="programme-card"><h4>B.Sc Information Technology</h4><p>Systems administration, networks and IT infrastructure.</p><span class="duration">4 years</span></div>
+        <div class="programme-card"><h4>B.Sc Cybersecurity</h4><p>Threat analysis, ethical hacking and digital forensics.</p><span class="duration">4 years</span></div>
+        <div class="programme-card"><h4>B.Sc Data Science</h4><p>Statistics, machine learning and data engineering.</p><span class="duration">4 years</span></div>
+      </div>
+    </div>
+
+    <div class="faculty-block">
+      <h3 class="faculty-title">Faculty of Business</h3>
+      <div class="programme-grid">
+        <div class="programme-card"><h4>B.Sc Accounting</h4><p>Financial reporting, audit and corporate finance.</p><span class="duration">4 years</span></div>
+        <div class="programme-card"><h4>B.Sc Business Administration</h4><p>Management, strategy and entrepreneurship.</p><span class="duration">4 years</span></div>
+        <div class="programme-card"><h4>B.Sc Economics</h4><p>Micro and macroeconomics with applied policy analysis.</p><span class="duration">4 years</span></div>
+        <div class="programme-card"><h4>B.Sc Banking &amp; Finance</h4><p>Financial markets, risk management and banking operations.</p><span class="duration">4 years</span></div>
+      </div>
+    </div>
+
+    <div class="faculty-block">
+      <h3 class="faculty-title">Faculty of Sciences</h3>
+      <div class="programme-grid">
+        <div class="programme-card"><h4>B.Sc Microbiology</h4><p>Applied microbiology with industrial and medical lab work.</p><span class="duration">4 years</span></div>
+        <div class="programme-card"><h4>B.Sc Biochemistry</h4><p>Molecular biology, biochemical analysis and lab techniques.</p><span class="duration">4 years</span></div>
+        <div class="programme-card"><h4>B.Sc Physics with Electronics</h4><p>Applied physics with an electronics specialisation.</p><span class="duration">4 years</span></div>
+        <div class="programme-card"><h4>B.Sc Environmental Science</h4><p>Environmental management and sustainability practice.</p><span class="duration">4 years</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADMISSIONS -->
+  <section class="page-section" id="admissions" aria-labelledby="admissions-heading">
+    <div class="section-head">
+      <p class="eyebrow">Admissions</p>
+      <h2 id="admissions-heading">How to apply, in four steps</h2>
+      <p>Most applicants complete the entire process in under fifteen minutes.</p>
+    </div>
+    <div class="steps-list">
+      <div class="step-row">
+        <div class="step-num">1</div>
+        <div><h4>Create your account</h4><p>Use the Apply Now button to register with your name, email and a secure password.</p></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">2</div>
+        <div><h4>Submit your documents</h4><p>Upload your O'Level results, birth certificate and a passport photograph through your dashboard once it's available.</p></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">3</div>
+        <div><h4>Pay the application fee</h4><p>A non-refundable fee of ₦5,000 confirms your application is being reviewed by admissions.</p></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">4</div>
+        <div><h4>Receive your admission letter</h4><p>Successful applicants receive an offer letter by email within two weeks of submission.</p></div>
+      </div>
+    </div>
+
+    <div class="faq-section" style="padding:60px 0 0;">
+      <div class="section-head" style="margin-bottom:30px;">
+        <p class="eyebrow">FAQs</p>
+        <h2>Common questions</h2>
+      </div>
+      <div class="faq-list" id="faqList">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What are the admission requirements?
+            <span class="chevron">▾</span>
+          </button>
+          <div class="faq-answer"><p>You need five O'Level credits including English and Mathematics, plus a passing score in the university's entrance examination.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Can I apply for more than one programme?
+            <span class="chevron">▾</span>
+          </button>
+          <div class="faq-answer"><p>You may select one first-choice and one second-choice programme on the same application.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Does GCJU offer scholarships?
+            <span class="chevron">▾</span>
+          </button>
+          <div class="faq-answer"><p>Yes. Merit scholarships are awarded automatically to applicants who score above 85% in the entrance examination.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How long does admission processing take?
+            <span class="chevron">▾</span>
+          </button>
+          <div class="faq-answer"><p>Most applicants hear back within two weeks of submitting a complete application and payment.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Can international students apply?
+            <span class="chevron">▾</span>
+          </button>
+          <div class="faq-answer"><p>Yes. International applicants follow the same process and submit an equivalent certificate evaluation.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAFF DIRECTORY -->
+  <section class="staff-section" id="staff" aria-labelledby="staff-heading">
+    <div class="section-head">
+      <p class="eyebrow">Faculty</p>
+      <h2 id="staff-heading">Meet the people teaching you</h2>
+      <p>Search by name or filter by department.</p>
+    </div>
+    <div class="staff-toolbar">
+      <input type="text" id="staffSearch" placeholder="Search by name...">
+      <select id="staffFilter">
+        <option value="all">All departments</option>
+        <option value="Computer Science">Computer Science</option>
+        <option value="Engineering">Engineering</option>
+        <option value="Business">Business</option>
+        <option value="Sciences">Sciences</option>
+      </select>
+    </div>
+    <div class="staff-grid" id="staffGrid"></div>
+  </section>
+
+  <!-- EVENTS -->
+  <section class="events-section" id="events" aria-labelledby="events-heading">
+    <div class="section-head">
+      <p class="eyebrow">Campus life</p>
+      <h2 id="events-heading">Upcoming events</h2>
+      <p>What's happening on campus this term.</p>
+    </div>
+    <div class="events-list" id="eventsList"></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="page-section" id="about" aria-labelledby="about-heading">
+    <div class="page-body">
+      <p class="eyebrow" style="color:#b9872a;">About us</p>
+      <h2 id="about-heading">Built to produce graduates who can work on day one.</h2>
+      <p>Gold Chinedu-James University was founded on a simple complaint: too many graduates leave school knowing the theory and nothing about how the work actually gets done. We built our programmes backward from what employers told us they needed.</p>
+      <p>Today the university runs 38 programmes across engineering, computing, business and the sciences, taught by faculty who still consult and build in their fields.</p>
+      <h3>Our mission</h3>
+      <p>To give every student a degree that opens doors immediately, not eventually.</p>
+      <h3>Our values</h3>
+      <p>Rigour over shortcuts. Practice over theory alone. Community over competition.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="page-section" id="contact" aria-labelledby="contact-heading">
+    <div class="contact-grid">
+      <div>
+        <p class="eyebrow" style="color:#b9872a;">Get in touch</p>
+        <h2 id="contact-heading" style="font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.3rem);color:var(--navy-deep);font-weight:600;margin-bottom:16px;">We respond within one working day.</h2>
+        <p style="color:var(--ink-soft);">Reach the admissions office directly, or visit the campus in person Monday to Friday.</p>
+        <ul class="contact-list">
+          <li><b>Admissions</b> admissions@gcju.edu.ng</li>
+          <li><b>Phone</b> +234 800 000 0000</li>
+          <li><b>Address</b> 14 Founders Way, Port Harcourt, Nigeria</li>
+          <li><b>Hours</b> Mon – Fri, 8am – 5pm</li>
+        </ul>
+      </div>
+      <div>
+        <div class="card">
+          <h3>Send a quick message</h3>
+          <form id="contactForm" novalidate>
+            <div class="field">
+              <label for="contactName">Full name</label>
+              <input id="contactName" type="text" placeholder="Your name" required>
+            </div>
+            <div class="field">
+              <label for="contactEmail">Email address</label>
+              <input id="contactEmail" type="email" placeholder="you@example.com" required>
+            </div>
+            <div class="field">
+              <label for="contactMsg">Message</label>
+              <input id="contactMsg" type="text" placeholder="How can we help?" required>
+            </div>
+            <button type="submit" class="btn btn-gold btn-block">Send message</button>
+            <div class="form-message" id="contactMessage" role="alert"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGIN -->
+  <section class="auth-section" id="login" aria-labelledby="login-heading">
+    <div class="auth-card">
+      <h2 id="login-heading">Welcome back</h2>
+      <p class="auth-sub">Log in to access your student dashboard.</p>
+      <div class="auth-tabs">
+        <button class="active" id="loginTabStudent" onclick="setLoginRole('student')">Student</button>
+        <button id="loginTabAdmin" onclick="setLoginRole('admin')">Admin</button>
+      </div>
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <label for="loginEmail">Email address</label>
+          <input id="loginEmail" type="email" placeholder="you@example.com" required autocomplete="email">
+          <div class="field-error" id="loginEmailError"></div>
+        </div>
+        <div class="field">
+          <label for="loginPassword">Password</label>
+          <input id="loginPassword" type="password" placeholder="Enter your password" required autocomplete="current-password">
+          <div class="field-error" id="loginPasswordError"></div>
+          <div class="field-hint" id="adminHint" style="display:none;">Demo admin login: admin@gcju.edu.ng / admin1234</div>
+        </div>
+        <div class="field-row">
+          <label class="checkbox-row">
+            <input type="checkbox" id="rememberMe">
+            Remember me
+          </label>
+          <button type="button" class="link-btn" onclick="alert('Password recovery is not yet available. Please contact admissions@gcju.edu.ng.')">Forgot password?</button>
+        </div>
+        <button type="submit" class="btn btn-gold btn-block">Log in</button>
+        <div class="form-message" id="loginMessage" role="alert"></div>
+      </form>
+      <p class="auth-switch">New here? <button class="link-btn" onclick="showTab('signup')">Create an account</button></p>
+    </div>
+  </section>
+
+  <!-- SIGNUP -->
+  <section class="auth-section" id="signup" aria-labelledby="signup-heading">
+    <div class="auth-card">
+      <h2 id="signup-heading">Create your account</h2>
+      <p class="auth-sub">Start your application to GCJU in under two minutes.</p>
+      <form id="signupForm" novalidate>
+        <div class="field">
+          <label for="firstName">First name</label>
+          <input id="firstName" type="text" placeholder="e.g. Chidinma" required autocomplete="given-name">
+          <div class="field-error" id="firstNameError"></div>
+        </div>
+        <div class="field">
+          <label for="lastName">Last name</label>
+          <input id="lastName" type="text" placeholder="e.g. Okafor" required autocomplete="family-name">
+          <div class="field-error" id="lastNameError"></div>
+        </div>
+        <div class="field">
+          <label for="signupEmail">Email address</label>
+          <input id="signupEmail" type="email" placeholder="you@example.com" required autocomplete="email">
+          <div class="field-error" id="signupEmailError"></div>
+        </div>
+        <div class="field">
+          <label for="signupPassword">Password</label>
+          <input id="signupPassword" type="password" placeholder="At least 8 characters" required autocomplete="new-password">
+          <div class="strength-meter" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          <div class="field-hint" id="passwordHint">Use 8+ characters with a number for a stronger password.</div>
+          <div class="field-error" id="signupPasswordError"></div>
+        </div>
+        <div class="field">
+          <label for="confirmPassword">Confirm password</label>
+          <input id="confirmPassword" type="password" placeholder="Re-enter your password" required autocomplete="new-password">
+          <div class="field-error" id="confirmPasswordError"></div>
+        </div>
+        <label class="checkbox-row" style="margin-bottom:18px;">
+          <input type="checkbox" id="agreeTerms">
+          I agree to the admissions terms and privacy policy
+        </label>
+        <button type="submit" class="btn btn-gold btn-block">Create account</button>
+        <div class="form-message" id="signupMessage" role="alert"></div>
+      </form>
+      <p class="auth-switch">Already registered? <button class="link-btn" onclick="showTab('login')">Log in</button></p>
+    </div>
+  </section>
+
+  <!-- STUDENT DASHBOARD -->
+  <section class="dashboard-section" id="dashboard" aria-labelledby="dashboard-heading">
+    <div class="dash-head">
+      <div>
+        <h2 id="dashboard-heading">Welcome back</h2>
+        <p>Here's what's happening with your enrolment.</p>
+      </div>
+      <div class="dash-actions">
+        <button class="btn btn-outline-navy btn-sm" onclick="logout()">Log out</button>
+      </div>
+    </div>
+
+    <div class="dash-tabs">
+      <button class="active" data-dash="overview" onclick="showDashPanel('overview')">Overview</button>
+      <button data-dash="courses" onclick="showDashPanel('courses')">Register courses</button>
+      <button data-dash="results" onclick="showDashPanel('results')">Results &amp; GPA</button>
+      <button data-dash="fees" onclick="showDashPanel('fees')">Fees</button>
+    </div>
+
+    <!-- Overview panel -->
+    <div class="dash-panel active" id="dashPanel-overview">
+      <div class="dash-grid">
+        <div class="card">
+          <h3>Your registered courses this term</h3>
+          <div id="dashRegisteredCourses"></div>
+        </div>
+        <div class="card">
+          <h3>Profile</h3>
+          <div class="profile-row">
+            <div class="avatar" id="dashAvatar">GC</div>
+            <div>
+              <b id="dashName">Student</b>
+              <span id="dashEmail">student@gcju.edu.ng</span>
+            </div>
+          </div>
+          <div class="info-line"><span>Programme</span><span>B.Sc Computer Science</span></div>
+          <div class="info-line"><span>Level</span><span>300 Level</span></div>
+          <div class="info-line"><span>Status</span><span style="color:var(--success);">Active</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Course registration panel -->
+    <div class="dash-panel" id="dashPanel-courses">
+      <div class="dash-grid">
+        <div class="card">
+          <h3>Available courses</h3>
+          <div id="availableCoursesList"></div>
+        </div>
+        <div class="card">
+          <h3>Your registered courses</h3>
+          <div id="registeredCoursesList"></div>
+          <p class="field-hint" style="margin-top:14px;color:var(--ink-soft);">Registered courses are saved to your account and appear on your overview tab.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results panel -->
+    <div class="dash-panel" id="dashPanel-results">
+      <div class="card" style="max-width:780px;margin:0 auto;">
+        <h3>Academic record</h3>
+        <div class="gpa-summary">
+          <div class="gpa-box"><b>4.21</b><span>Current CGPA</span></div>
+          <div class="gpa-box"><b>300L</b><span>Current level</span></div>
+          <div class="gpa-box"><b>96</b><span>Credit units earned</span></div>
+        </div>
+
+        <div class="semester-block">
+          <h4>200 Level – First Semester</h4>
+          <div class="result-row"><span>CSC 201 — Data Structures &amp; Algorithms</span><span class="tag grade">A</span></div>
+          <div class="result-row"><span>CSC 203 — Computer Architecture</span><span class="tag grade">B</span></div>
+          <div class="result-row"><span>MTH 201 — Mathematical Methods</span><span class="tag grade">B</span></div>
+          <div class="result-row"><span>GST 201 — Use of English</span><span class="tag grade">A</span></div>
+        </div>
+
+        <div class="semester-block">
+          <h4>200 Level – Second Semester</h4>
+          <div class="result-row"><span>CSC 212 — Object-Oriented Programming</span><span class="tag grade">A</span></div>
+          <div class="result-row"><span>CSC 214 — Database Systems</span><span class="tag grade">A</span></div>
+          <div class="result-row"><span>STA 204 — Probability &amp; Statistics</span><span class="tag grade">B</span></div>
+        </div>
+
+        <div class="semester-block" style="margin-bottom:0;">
+          <h4>300 Level – First Semester (in progress)</h4>
+          <div class="result-row"><span>CSC 301 — Operating Systems</span><span class="tag pending">In progress</span></div>
+          <div class="result-row"><span>CSC 305 — Software Engineering</span><span class="tag pending">In progress</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fees panel -->
+    <div class="dash-panel" id="dashPanel-fees">
+      <div class="card" style="max-width:560px;margin:0 auto;">
+        <h3>Tuition &amp; fees — 2025/2026, Second Semester</h3>
+        <div class="fee-row"><span>Tuition</span><span>₦185,000</span></div>
+        <div class="fee-row"><span>Library &amp; ICT levy</span><span>₦12,500</span></div>
+        <div class="fee-row"><span>Student union dues</span><span>₦3,000</span></div>
+        <div class="fee-row"><span>Examination fee</span><span>₦8,500</span></div>
+        <div class="fee-row"><span>Total</span><span>₦209,000</span></div>
+
+        <div id="feeStatusBox" class="fee-status">Payment pending — pay before the exam period to avoid a late fee.</div>
+        <button class="btn btn-gold btn-block" style="margin-top:16px;" id="payFeeBtn" onclick="simulatePayment()">Pay now (simulated)</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADMIN DASHBOARD -->
+  <section class="dashboard-section" id="admin-dashboard" aria-labelledby="admin-dashboard-heading">
+    <div class="dash-head">
+      <div>
+        <h2 id="admin-dashboard-heading">Admin panel</h2>
+        <p>Registered student accounts on this device.</p>
+      </div>
+      <div class="dash-actions">
+        <button class="btn btn-outline-navy btn-sm" onclick="logout()">Log out</button>
+      </div>
+    </div>
+    <div class="card" style="max-width:var(--maxw);margin:0 auto;overflow-x:auto;">
+      <table class="admin-table">
+        <thead>
+          <tr><th>Name</th><th>Email</th><th>Registered courses</th><th>Action</th></tr>
+        </thead>
+        <tbody id="adminUserTable"></tbody>
+      </table>
+      <div class="empty-state" id="adminEmptyState" style="display:none;">No student accounts have registered on this device yet.</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>© <span id="currentYear"></span> Gold Chinedu-James University. All rights reserved. <span class="gold-dot">·</span> Port Harcourt, Nigeria</p>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+  /* =========================================================
+     DATA
+  ========================================================= */
+
+  const TESTIMONIALS = [
+    { name:"Ifeoma Bassey", programme:"B.Sc Computer Science, Class of 2025", quote:"The curriculum felt like a job, not a classroom. I had two internship offers before I finished my final year project." },
+    { name:"Tunde Akinola", programme:"B.Eng Petroleum Engineering, Class of 2024", quote:"Lecturers here have actually worked in the field. That changes how they teach and how seriously they take your questions." },
+    { name:"Grace Etim", programme:"B.Sc Accounting, Class of 2025", quote:"The career office didn't disappear after graduation. They followed up on my placement for almost two years." }
+  ];
+
+  const AVAILABLE_COURSES = [
+    { code:"CSC 301", title:"Operating Systems", units:3 },
+    { code:"CSC 305", title:"Software Engineering", units:3 },
+    { code:"CSC 310", title:"Computer Networks", units:3 },
+    { code:"CSC 318", title:"Artificial Intelligence", units:3 },
+    { code:"GST 301", title:"Entrepreneurship Studies", units:2 },
+    { code:"STA 301", title:"Numerical Methods", units:2 }
+  ];
+
+  const DEFAULT_REGISTERED = [
+    { code:"CSC 201", title:"Data Structures & Algorithms", lecturer:"Dr. Adeyemi", status:"ok" },
+    { code:"CSC 214", title:"Database Systems", lecturer:"Dr. Baridam", status:"ok" },
+    { code:"GST 203", title:"Technical Writing", lecturer:"Mrs. Eze", status:"pending" },
+    { code:"CSC 220", title:"Computer Networks", lecturer:"Mr. Obi", status:"ok" }
+  ];
+
+  const STAFF = [
+    { name:"Dr. Ifeanyi Adeyemi", dept:"Computer Science", role:"Senior Lecturer, Algorithms" },
+    { name:"Dr. Comfort Baridam", dept:"Computer Science", role:"Head of Department, Databases" },
+    { name:"Mr. Daniel Obi", dept:"Computer Science", role:"Lecturer, Networks" },
+    { name:"Mrs. Patricia Eze", dept:"Computer Science", role:"Lecturer, Technical Communication" },
+    { name:"Prof. Emeka Nwosu", dept:"Engineering", role:"Dean, Faculty of Engineering" },
+    { name:"Dr. Halima Suleiman", dept:"Engineering", role:"Senior Lecturer, Petroleum Engineering" },
+    { name:"Engr. Bassey Udo", dept:"Engineering", role:"Lecturer, Mechanical Systems" },
+    { name:"Dr. Adaeze Okonjo", dept:"Business", role:"Head of Department, Accounting" },
+    { name:"Mr. Tope Adebanjo", dept:"Business", role:"Lecturer, Finance" },
+    { name:"Dr. Ngozi Eluwa", dept:"Sciences", role:"Senior Lecturer, Microbiology" },
+    { name:"Dr. Chuka Ibekwe", dept:"Sciences", role:"Lecturer, Biochemistry" },
+    { name:"Prof. Sandra Okafor", dept:"Sciences", role:"Dean, Faculty of Sciences" }
+  ];
+
+  const EVENTS = [
+    { day:"14", month:"JUL", title:"Matriculation Ceremony", desc:"Formal induction for newly admitted students into the university.", tag:"Ceremony" },
+    { day:"22", month:"JUL", title:"Engineering Career Fair", desc:"Recruiters from oil and gas, telecoms and construction firms visit campus.", tag:"Careers" },
+    { day:"03", month:"AUG", title:"Inter-Faculty Football Cup kickoff", desc:"Annual football competition between all four faculties begins.", tag:"Sports" },
+    { day:"19", month:"AUG", title:"Research Symposium", desc:"Final-year and postgraduate students present ongoing research projects.", tag:"Academics" },
+    { day:"02", month:"SEP", title:"Second Semester Registration Deadline", desc:"Last day to complete course registration without a late fee.", tag:"Deadline" }
+  ];
+
+  const SEARCH_INDEX = [
+    { tab:"home", title:"Home", desc:"Homepage and admissions overview" },
+    { tab:"programmes", title:"Programmes", desc:"All 38 degree programmes by faculty" },
+    { tab:"features", title:"Why GCJU", desc:"What makes the university different" },
+    { tab:"admissions", title:"Admissions & FAQs", desc:"How to apply, step by step" },
+    { tab:"staff", title:"Faculty directory", desc:"Search lecturers by department" },
+    { tab:"events", title:"Events calendar", desc:"Upcoming campus events" },
+    { tab:"about", title:"About us", desc:"Our mission and values" },
+    { tab:"contact", title:"Contact", desc:"Reach the admissions office" },
+    { tab:"login", title:"Log in", desc:"Access your student dashboard" },
+    { tab:"signup", title:"Apply now", desc:"Create a new student account" }
+  ];
+
+  const ADMIN_ACCOUNT = { email:"admin@gcju.edu.ng", password:"admin1234" };
+
+  /* =========================================================
+     UTILITIES
+  ========================================================= */
+
+  function getUsers(){
+    try{ return JSON.parse(localStorage.getItem('gcju_users')) || []; }
+    catch(e){ return []; }
+  }
+  function saveUsers(users){ localStorage.setItem('gcju_users', JSON.stringify(users)); }
+
+  function showMessage(el, text, type){
+    el.textContent = text;
+    el.classList.remove('error','success');
+    el.classList.add('show', type);
+  }
+  function clearFieldError(input, errorEl){
+    input.removeAttribute('aria-invalid');
+    if (errorEl) errorEl.textContent = '';
+  }
+  function setFieldError(input, errorEl, msg){
+    input.setAttribute('aria-invalid','true');
+    if (errorEl) errorEl.textContent = msg;
+  }
+  function isValidEmail(value){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value); }
+
+  function showToast(text){
+    const toast = document.getElementById('toast');
+    toast.textContent = text;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2600);
+  }
+
+  function initials(fullName){
+    return fullName.split(' ').filter(Boolean).map(n => n[0]).slice(0,2).join('').toUpperCase();
+  }
+
+  let currentUserEmail = null;
+  let loginRole = 'student';
+
+  /* =========================================================
+     NAVIGATION
+  ========================================================= */
+
+  function showTab(tabId){
+    document.querySelectorAll('main > section').forEach(s => s.classList.remove('active'));
+    const target = document.getElementById(tabId);
+    if (target) target.classList.add('active');
+
+    document.querySelectorAll('nav.primary-nav button').forEach(b => {
+      if (b.dataset.tab === tabId) b.setAttribute('aria-current','page');
+      else b.removeAttribute('aria-current');
+    });
+
+    document.getElementById('primaryNav').classList.remove('open');
+    document.getElementById('navToggle').setAttribute('aria-expanded','false');
+    closeSearch();
+    window.scrollTo({ top:0, behavior:'smooth' });
+  }
+
+  document.getElementById('navToggle').addEventListener('click', function(){
+    const nav = document.getElementById('primaryNav');
+    const isOpen = nav.classList.toggle('open');
+    this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  /* =========================================================
+     DARK MODE
+  ========================================================= */
+
+  function applyTheme(theme){
+    document.documentElement.setAttribute('data-theme', theme);
+    document.getElementById('themeToggle').textContent = theme === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('gcju_theme', theme);
+  }
+  (function initTheme(){
+    const saved = localStorage.getItem('gcju_theme');
+    applyTheme(saved === 'dark' ? 'dark' : 'light');
+  })();
+  document.getElementById('themeToggle').addEventListener('click', function(){
+    const current = document.documentElement.getAttribute('data-theme');
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  });
+
+  /* =========================================================
+     SEARCH
+  ========================================================= */
+
+  function openSearch(){
+    document.getElementById('searchOverlay').classList.add('open');
+    document.getElementById('searchInput').value = '';
+    document.getElementById('searchInput').focus();
+    renderSearchResults('');
+  }
+  function closeSearch(){
+    document.getElementById('searchOverlay').classList.remove('open');
+  }
+  function renderSearchResults(query){
+    const container = document.getElementById('searchResults');
+    const q = query.trim().toLowerCase();
+    const matches = q
+      ? SEARCH_INDEX.filter(item => item.title.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q))
+      : SEARCH_INDEX;
+
+    if (matches.length === 0){
+      container.innerHTML = '<div class="search-empty">No matches. Try a different word.</div>';
+      return;
+    }
+    container.innerHTML = matches.map(item =>
+      `<button class="search-result" data-tab="${item.tab}"><b>${item.title}</b><small>${item.desc}</small></button>`
+    ).join('');
+    container.querySelectorAll('.search-result').forEach(btn => {
+      btn.addEventListener('click', () => showTab(btn.dataset.tab));
+    });
+  }
+
+  document.getElementById('searchToggle').addEventListener('click', openSearch);
+  document.getElementById('searchOverlay').addEventListener('click', function(e){
+    if (e.target === this) closeSearch();
+  });
+  document.getElementById('searchInput').addEventListener('input', function(){
+    renderSearchResults(this.value);
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeSearch();
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k'){
+      e.preventDefault();
+      openSearch();
+    }
+  });
+
+  /* =========================================================
+     RENDER: TESTIMONIALS
+  ========================================================= */
+
+  (function renderTestimonials(){
+    const section = document.getElementById('testimonials-section');
+    const head = document.createElement('div');
+    head.className = 'section-head';
+    head.innerHTML = `<p class="eyebrow" id="testi-heading">Student voices</p><h2>What graduates say about us</h2><p>Real outcomes from people who walked through our gates.</p>`;
+    const grid = document.createElement('div');
+    grid.className = 'testimonial-grid';
+    grid.innerHTML = TESTIMONIALS.map(t => `
+      <div class="testimonial-card">
+        <span class="quote-mark">"</span>
+        <p>${t.quote}</p>
+        <div class="testimonial-person">
+          <div class="testimonial-avatar">${initials(t.name)}</div>
+          <div><b>${t.name}</b><span>${t.programme}</span></div>
+        </div>
+      </div>
+    `).join('');
+    section.appendChild(head);
+    section.appendChild(grid);
+  })();
+
+  /* =========================================================
+     RENDER: STAFF DIRECTORY
+  ========================================================= */
+
+  function renderStaff(){
+    const grid = document.getElementById('staffGrid');
+    const query = document.getElementById('staffSearch').value.trim().toLowerCase();
+    const dept = document.getElementById('staffFilter').value;
+
+    const filtered = STAFF.filter(s => {
+      const matchesQuery = !query || s.name.toLowerCase().includes(query);
+      const matchesDept = dept === 'all' || s.dept === dept;
+      return matchesQuery && matchesDept;
+    });
+
+    if (filtered.length === 0){
+      grid.innerHTML = '<div class="staff-empty">No faculty members match your search.</div>';
+      return;
+    }
+
+    grid.innerHTML = filtered.map(s => `
+      <div class="staff-card">
+        <div class="staff-photo">${initials(s.name)}</div>
+        <h4>${s.name}</h4>
+        <span>${s.dept}</span>
+        <small>${s.role}</small>
+      </div>
+    `).join('');
+  }
+  document.getElementById('staffSearch').addEventListener('input', renderStaff);
+  document.getElementById('staffFilter').addEventListener('change', renderStaff);
+  renderStaff();
+
+  /* =========================================================
+     RENDER: EVENTS
+  ========================================================= */
+
+  (function renderEvents(){
+    const list = document.getElementById('eventsList');
+    list.innerHTML = EVENTS.map(e => `
+      <div class="event-row">
+        <div class="event-date"><b>${e.day}</b><span>${e.month}</span></div>
+        <div>
+          <h4>${e.title}</h4>
+          <p>${e.desc}</p>
+          <span class="event-tag">${e.tag}</span>
+        </div>
+      </div>
+    `).join('');
+  })();
+
+  /* =========================================================
+     FAQ ACCORDION
+  ========================================================= */
+
+  function toggleFaq(button){
+    const item = button.parentElement;
+    const wasOpen = item.classList.contains('open');
+    item.parentElement.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+
+  /* =========================================================
+     PASSWORD STRENGTH
+  ========================================================= */
+
+  const signupPassword = document.getElementById('signupPassword');
+  const strengthBars = document.querySelectorAll('.strength-meter span');
+  signupPassword.addEventListener('input', function(){
+    const val = this.value;
+    let score = 0;
+    if (val.length >= 8) score++;
+    if (/[0-9]/.test(val)) score++;
+    if (/[A-Z]/.test(val)) score++;
+    if (/[^A-Za-z0-9]/.test(val)) score++;
+    const colors = ['#e63946','#e8b339','#e8b339','#2f7a4f'];
+    strengthBars.forEach((bar, i) => {
+      bar.style.background = i < score ? colors[Math.max(score-1,0)] : 'rgba(255,255,255,0.15)';
+    });
+  });
+
+  /* =========================================================
+     LOGIN ROLE TABS (student / admin)
+  ========================================================= */
+
+  function setLoginRole(role){
+    loginRole = role;
+    document.getElementById('loginTabStudent').classList.toggle('active', role === 'student');
+    document.getElementById('loginTabAdmin').classList.toggle('active', role === 'admin');
+    document.getElementById('adminHint').style.display = role === 'admin' ? 'block' : 'none';
+  }
+
+  /* =========================================================
+     SIGNUP
+  ========================================================= */
+
+  document.getElementById('signupForm').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const firstName = document.getElementById('firstName');
+    const lastName = document.getElementById('lastName');
+    const email = document.getElementById('signupEmail');
+    const password = document.getElementById('signupPassword');
+    const confirm = document.getElementById('confirmPassword');
+    const agree = document.getElementById('agreeTerms');
+    const msgEl = document.getElementById('signupMessage');
+
+    [firstName, lastName, email, password, confirm].forEach(input => {
+      clearFieldError(input, document.getElementById(input.id + 'Error'));
+    });
+
+    let hasError = false;
+
+    if (!firstName.value.trim()){
+      setFieldError(firstName, document.getElementById('firstNameError'), 'First name is required.');
+      hasError = true;
+    }
+    if (!lastName.value.trim()){
+      setFieldError(lastName, document.getElementById('lastNameError'), 'Last name is required.');
+      hasError = true;
+    }
+    if (!isValidEmail(email.value.trim())){
+      setFieldError(email, document.getElementById('signupEmailError'), 'Enter a valid email address.');
+      hasError = true;
+    }
+    if (password.value.length < 8){
+      setFieldError(password, document.getElementById('signupPasswordError'), 'Password must be at least 8 characters.');
+      hasError = true;
+    }
+    if (confirm.value !== password.value || !confirm.value){
+      setFieldError(confirm, document.getElementById('confirmPasswordError'), 'Passwords do not match.');
+      hasError = true;
+    }
+
+    if (hasError){
+      showMessage(msgEl, 'Please fix the errors above and try again.', 'error');
+      return;
+    }
+
+    if (!agree.checked){
+      showMessage(msgEl, 'Please agree to the admissions terms to continue.', 'error');
+      return;
+    }
+
+    const users = getUsers();
+    const emailLower = email.value.trim().toLowerCase();
+
+    if (emailLower === ADMIN_ACCOUNT.email || users.some(u => u.email.toLowerCase() === emailLower)){
+      showMessage(msgEl, 'An account with this email already exists. Try logging in instead.', 'error');
+      return;
+    }
+
+    const fullName = `${firstName.value.trim()} ${lastName.value.trim()}`;
+    users.push({
+      fullName,
+      email: email.value.trim(),
+      password: password.value,
+      registeredCourses: [],
+      feesPaid: false
+    });
+    saveUsers(users);
+
+    showMessage(msgEl, `Welcome, ${fullName}. Your account has been created. You can log in now.`, 'success');
+    this.reset();
+    strengthBars.forEach(bar => bar.style.background = 'rgba(255,255,255,0.15)');
+
+    setTimeout(() => showTab('login'), 1400);
+  });
+
+  /* =========================================================
+     LOGIN
+  ========================================================= */
+
+  document.getElementById('loginForm').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const email = document.getElementById('loginEmail');
+    const password = document.getElementById('loginPassword');
+    const msgEl = document.getElementById('loginMessage');
+
+    clearFieldError(email, document.getElementById('loginEmailError'));
+    clearFieldError(password, document.getElementById('loginPasswordError'));
+
+    if (!isValidEmail(email.value.trim())){
+      setFieldError(email, document.getElementById('loginEmailError'), 'Enter a valid email address.');
+      return;
+    }
+    if (!password.value){
+      setFieldError(password, document.getElementById('loginPasswordError'), 'Enter your password.');
+      return;
+    }
+
+    const emailLower = email.value.trim().toLowerCase();
+
+    if (loginRole === 'admin'){
+      if (emailLower === ADMIN_ACCOUNT.email && password.value === ADMIN_ACCOUNT.password){
+        showMessage(msgEl, 'Admin login successful. Redirecting...', 'success');
+        this.reset();
+        setTimeout(() => {
+          renderAdminTable();
+          showTab('admin-dashboard');
+        }, 600);
+      } else {
+        showMessage(msgEl, 'Invalid admin credentials.', 'error');
+      }
+      return;
+    }
+
+    const users = getUsers();
+    const userFound = users.find(u => u.email.toLowerCase() === emailLower && u.password === password.value);
+
+    if (userFound){
+      currentUserEmail = userFound.email;
+      showMessage(msgEl, 'Login successful. Redirecting to your dashboard...', 'success');
+      loadDashboardForUser(userFound);
+      this.reset();
+      setTimeout(() => showTab('dashboard'), 700);
+    } else {
+      showMessage(msgEl, 'Invalid email or password. Please try again.', 'error');
+    }
+  });
+
+  /* =========================================================
+     STUDENT DASHBOARD
+  ========================================================= */
+
+  function getCurrentUser(){
+    const users = getUsers();
+    return users.find(u => u.email === currentUserEmail) || null;
+  }
+
+  function updateCurrentUser(patch){
+    const users = getUsers();
+    const idx = users.findIndex(u => u.email === currentUserEmail);
+    if (idx === -1) return;
+    users[idx] = { ...users[idx], ...patch };
+    saveUsers(users);
+  }
+
+  function loadDashboardForUser(user){
+    document.getElementById('dashboard-heading').textContent = `Welcome back, ${user.fullName.split(' ')[0]}`;
+    document.getElementById('dashName').textContent = user.fullName;
+    document.getElementById('dashEmail').textContent = user.email;
+    document.getElementById('dashAvatar').textContent = initials(user.fullName);
+
+    showDashPanel('overview');
+    renderOverviewCourses(user);
+    renderCourseRegistration(user);
+    updateFeeStatus(user);
+  }
+
+  function showDashPanel(name){
+    document.querySelectorAll('.dash-tabs button').forEach(b => b.classList.toggle('active', b.dataset.dash === name));
+    document.querySelectorAll('.dash-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('dashPanel-' + name).classList.add('active');
+  }
+
+  function renderOverviewCourses(user){
+    const container = document.getElementById('dashRegisteredCourses');
+    const registeredExtra = (user.registeredCourses || []).map(code => {
+      const c = AVAILABLE_COURSES.find(ac => ac.code === code);
+      return c ? { code:c.code, title:c.title, lecturer:'Staff assigned', status:'pending' } : null;
+    }).filter(Boolean);
+
+    const all = [...DEFAULT_REGISTERED, ...registeredExtra];
+
+    if (all.length === 0){
+      container.innerHTML = '<div class="empty-state">No courses registered yet. Go to "Register courses" to add some.</div>';
+      return;
+    }
+
+    container.innerHTML = all.map(c => `
+      <div class="course-row">
+        <div><b>${c.title}</b><small>${c.code} · ${c.lecturer}</small></div>
+        <span class="tag ${c.status === 'ok' ? 'ok' : 'pending'}">${c.status === 'ok' ? 'Active' : 'Awaiting result'}</span>
+      </div>
+    `).join('');
+  }
+
+  function renderCourseRegistration(user){
+    const registered = user.registeredCourses || [];
+
+    const availableContainer = document.getElementById('availableCoursesList');
+    const remaining = AVAILABLE_COURSES.filter(c => !registered.includes(c.code));
+    availableContainer.innerHTML = remaining.length
+      ? remaining.map(c => `
+          <div class="available-course">
+            <div><b>${c.title}</b><small>${c.code} · ${c.units} units</small></div>
+            <button class="btn btn-gold btn-sm" onclick="registerCourse('${c.code}')">Register</button>
+          </div>
+        `).join('')
+      : '<div class="empty-state">You have registered every available elective.</div>';
+
+    const registeredContainer = document.getElementById('registeredCoursesList');
+    registeredContainer.innerHTML = registered.length
+      ? registered.map(code => {
+          const c = AVAILABLE_COURSES.find(ac => ac.code === code);
+          if (!c) return '';
+          return `
+            <div class="available-course">
+              <div><b>${c.title}</b><small>${c.code} · ${c.units} units</small></div>
+              <button class="btn btn-outline-navy btn-sm" onclick="dropCourse('${c.code}')">Drop</button>
+            </div>
+          `;
+        }).join('')
+      : '<div class="empty-state">You have not registered any elective courses yet.</div>';
+  }
+
+  function registerCourse(code){
+    const user = getCurrentUser();
+    if (!user) return;
+    const registered = user.registeredCourses || [];
+    if (!registered.includes(code)){
+      registered.push(code);
+      updateCurrentUser({ registeredCourses: registered });
+      showToast(`${code} registered.`);
+      const refreshed = getCurrentUser();
+      renderCourseRegistration(refreshed);
+      renderOverviewCourses(refreshed);
+    }
+  }
+
+  function dropCourse(code){
+    const user = getCurrentUser();
+    if (!user) return;
+    const registered = (user.registeredCourses || []).filter(c => c !== code);
+    updateCurrentUser({ registeredCourses: registered });
+    showToast(`${code} dropped.`);
+    const refreshed = getCurrentUser();
+    renderCourseRegistration(refreshed);
+    renderOverviewCourses(refreshed);
+  }
+
+  function updateFeeStatus(user){
+    const box = document.getElementById('feeStatusBox');
+    const btn = document.getElementById('payFeeBtn');
+    if (user.feesPaid){
+      box.textContent = 'Payment received. You are clear for the examination period.';
+      box.classList.add('paid');
+      btn.textContent = 'Payment complete';
+      btn.disabled = true;
+      btn.style.opacity = '0.6';
+      btn.style.cursor = 'default';
+    } else {
+      box.textContent = 'Payment pending — pay before the exam period to avoid a late fee.';
+      box.classList.remove('paid');
+      btn.textContent = 'Pay now (simulated)';
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      btn.style.cursor = 'pointer';
+    }
+  }
+
+  function simulatePayment(){
+    const btn = document.getElementById('payFeeBtn');
+    btn.textContent = 'Processing...';
+    btn.disabled = true;
+    setTimeout(() => {
+      updateCurrentUser({ feesPaid: true });
+      const refreshed = getCurrentUser();
+      updateFeeStatus(refreshed);
+      showToast('Payment simulated successfully. Receipt sent to your email.');
+    }, 1100);
+  }
+
+  /* =========================================================
+     ADMIN DASHBOARD
+  ========================================================= */
+
+  function renderAdminTable(){
+    const users = getUsers();
+    const tbody = document.getElementById('adminUserTable');
+    const empty = document.getElementById('adminEmptyState');
+
+    if (users.length === 0){
+      tbody.innerHTML = '';
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+
+    tbody.innerHTML = users.map(u => `
+      <tr>
+        <td>${u.fullName}</td>
+        <td>${u.email}</td>
+        <td>${(u.registeredCourses || []).length} course(s)</td>
+        <td><button class="btn btn-danger btn-sm" onclick="removeUser('${u.email}')">Remove</button></td>
+      </tr>
+    `).join('');
+  }
+
+  function removeUser(email){
+    if (!confirm(`Remove the account for ${email}? This cannot be undone.`)) return;
+    const users = getUsers().filter(u => u.email !== email);
+    saveUsers(users);
+    renderAdminTable();
+    showToast('Student account removed.');
+  }
+
+  /* =========================================================
+     CONTACT FORM
+  ========================================================= */
+
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('contactName').value.trim();
+    const email = document.getElementById('contactEmail').value.trim();
+    const msgEl = document.getElementById('contactMessage');
+
+    if (!name || !isValidEmail(email)){
+      showMessage(msgEl, 'Please enter your name and a valid email address.', 'error');
+      return;
+    }
+
+    showMessage(msgEl, `Thanks, ${name.split(' ')[0]}. We've received your message and will reply within one working day.`, 'success');
+    this.reset();
+  });
+
+  /* =========================================================
+     LOGOUT
+  ========================================================= */
+
+  function logout(){
+    currentUserEmail = null;
+    loginRole = 'student';
+    setLoginRole('student');
+    showTab('home');
+    showToast('You have been logged out.');
+    document.getElementById('loginMessage').classList.remove('show');
+    document.getElementById('signupMessage').classList.remove('show');
+  }
+
+  /* =========================================================
+     INIT
+  ========================================================= */
+
+  document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
